@@ -1,0 +1,1353 @@
+<title>Monasa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Most AI outbound agencies stop at the email. Monasa finds the companies ready to buy, writes to them, and puts real callers on the phone. Try it for a month on 200 prospects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* ================================================================
+     SHARED BASE
+     Structure, layout and rhythm come from the Calm direction.
+     Each variation below overrides only design tokens, typefaces,
+     and a small number of surface rules. Same HTML, three skins.
+  ================================================================ */
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18.5px;
+    line-height: 1.62;
+  }
+  /* The container is fluid: it fills the viewport minus a comfortable
+     gutter, up to a ceiling. Text elements below keep their own measure,
+     so a wide page never produces unreadable line lengths. */
+  .wrap { width: min(1320px, 100% - 12vw); max-width: none; margin: 0 auto; padding: 0; }
+  .wrap-wide { width: min(1440px, 100% - 8vw); max-width: none; margin: 0 auto; padding: 0; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 32px;
+    max-width: none; margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+  .logo {
+    font-family: var(--display);
+    font-weight: 600; font-size: 24px;
+    letter-spacing: -0.02em;
+  }
+  .logo b { color: var(--accent); }
+  nav .navlinks { display: flex; gap: 30px; font-size: 15.5px; color: var(--grey); }
+  nav .navlinks a { text-decoration: none; }
+  nav .navlinks a:hover { color: var(--accent); }
+
+  .hero { padding: 104px 0 92px; }
+  .eyebrow {
+    font-size: 13px; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 22px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(42px, 5.4vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    margin: 0 0 24px;
+  }
+  .lede { font-size: 21px; color: var(--grey); margin: 0 0 36px; max-width: 56ch; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent); color: #FBFAF8;
+    text-decoration: none;
+    font-weight: 600; font-size: 17px;
+    padding: 17px 32px;
+    border-radius: 6px;
+    transition: background .18s ease;
+  }
+  .btn:hover { background: #24494C; }
+  .btn-note { display: block; margin-top: 15px; font-size: 15px; color: var(--grey); }
+
+  /* ================================================================
+     HERO STATS
+     A row of hard numbers immediately under the hero, so the first
+     screen ends on evidence rather than on a claim.
+  ================================================================ */
+  .herostats {
+    border-top: 1px solid var(--rule);
+    background: var(--band);
+  }
+  .herostats-inner {
+    width: min(1440px, 100% - 8vw); margin: 0 auto; padding: 38px 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  }
+  .hs .n {
+    font-family: var(--display);
+    font-size: 40px; font-weight: 600; color: var(--accent);
+    line-height: 1; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .hs .c { font-size: 15px; color: var(--grey); margin-top: 9px; max-width: 22ch; }
+  @media (max-width: 860px) {
+    .herostats-inner { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+  }
+  @media (max-width: 620px) {
+    .herostats-inner { padding: 26px 18px; gap: 22px; }
+    .hs .n { font-size: 32px; }
+    .hs .c { font-size: 14px; }
+  }
+
+  /* ================================================================
+     CUSTOMER STORIES
+     Three cases as equal cards. Each leads with the headline number,
+     then what we did, so the KPI is scannable before the story.
+  ================================================================ */
+  .stories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+  .story {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 32px 30px 30px;
+    display: flex; flex-direction: column;
+  }
+  .story .who {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 20px;
+  }
+  .story .headline {
+    font-family: var(--display);
+    font-size: 46px; font-weight: 600; color: var(--ink);
+    line-height: .98; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 6px;
+  }
+  .story .headline-c {
+    font-size: 16px; color: var(--grey); margin: 0 0 22px; font-weight: 500;
+  }
+  .story p.body { font-size: 15.5px; color: var(--grey); margin: 0 0 22px; }
+  /* KPI list pinned to the bottom so all three cards align */
+  .story .kpis {
+    margin-top: auto; border-top: 1px solid var(--rule); padding-top: 16px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .story .kpi {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 14px; font-size: 14.5px;
+  }
+  .story .kpi span:first-child { color: var(--grey); }
+  .story .kpi span:last-child {
+    font-weight: 600; color: var(--ink);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  @media (max-width: 900px) {
+    .stories { grid-template-columns: 1fr; gap: 18px; }
+    .story .kpis { margin-top: 18px; }
+  }
+  @media (max-width: 620px) {
+    .story { padding: 26px 22px 24px; }
+    .story .headline { font-size: 40px; }
+  }
+
+  /* ================================================================
+     BROWSING BEHAVIOUR
+     Scroll reveals, hover feedback, and a progress bar. All motion
+     is small and fast, and every bit of it is disabled under
+     prefers-reduced-motion.
+  ================================================================ */
+  /* Reading progress along the top of the sticky header */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+    background: transparent; z-index: 150; pointer-events: none;
+  }
+  .progress i {
+    display: block; height: 100%; width: 0%;
+    background: var(--accent); transition: width .1s linear;
+  }
+
+  /* Sections arrive as you reach them */
+  /* Only hide content once JS has confirmed it can reveal it again.
+     Without the js class the page renders fully visible, so a script
+     failure can never leave the page blank. */
+  .js .reveal {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+  .js .reveal.in { opacity: 1; transform: none; }
+  /* Cards in a row arrive one after the other.
+     Not applied to .spine: animating its children with a transform
+     breaks the subgrid that keeps the four evidence cards aligned. */
+  .js .reveal.in .stagger > * { animation: rise .5s ease backwards; }
+  .js .reveal.in .stagger > *:nth-child(2) { animation-delay: .08s; }
+  .js .reveal.in .stagger > *:nth-child(3) { animation-delay: .16s; }
+  .js .reveal.in .stagger > *:nth-child(4) { animation-delay: .24s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+  /* Hover feedback on everything clickable or card shaped */
+  .story, .service, .oc, .ev {
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .story:hover, .service:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 34px -22px rgba(26,29,31,.42);
+    border-color: #C9CFCB;
+  }
+  .btn { transition: background .18s ease, transform .18s ease, box-shadow .18s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 22px -12px rgba(46,95,98,.75); }
+  .btn:active { transform: translateY(0); }
+  nav .navlinks a { transition: color .16s ease; position: relative; }
+  nav .navlinks a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -5px;
+    height: 1.5px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .22s ease;
+  }
+  nav .navlinks a:hover::after { transform: scaleX(1); }
+  summary { transition: color .16s ease; }
+  summary:hover { color: var(--accent); }
+  .story .kpi { transition: color .16s ease; }
+
+  /* A mid page call to action so the long middle is not a dead zone */
+  .midcta {
+    background: var(--accent); color: #F2F7F6;
+    border-radius: 12px; padding: 40px 44px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 34px; flex-wrap: wrap; margin-top: 46px;
+  }
+  .midcta h3 {
+    font-family: var(--display); font-size: 28px; font-weight: 600;
+    margin: 0 0 6px; letter-spacing: -0.02em; color: #FFFFFF;
+  }
+  .midcta p { margin: 0; color: #C6DDDC; font-size: 16.5px; max-width: 46ch; }
+  .midcta .btn {
+    background: #FBFAF8; color: var(--accent); flex: none;
+  }
+  .midcta .btn:hover { background: #FFFFFF; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .js .reveal.in .stagger > * { animation: none; }
+    .story:hover, .service:hover, .btn:hover { transform: none; }
+    .progress i { transition: none; }
+  }
+  @media (max-width: 620px) {
+    .midcta { padding: 30px 24px; gap: 20px; margin-top: 34px; }
+    .midcta h3 { font-size: 23px; }
+    .midcta .btn { width: 100%; }
+  }
+
+  /* ================================================================
+     SECTION RHYTHM
+     Alternating grounds give the scroll a pulse. Instead of one flat
+     sheet with hairline rules, the page moves between paper, a tinted
+     band, and a dark band, so each section announces itself.
+  ================================================================ */
+  section { padding: 92px 0; }
+  /* tinted band */
+  section.band {
+    background: var(--band);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  /* Body grey needs a touch more depth on a tinted ground to stay
+     above the 4.5:1 contrast threshold. */
+  section.band .grey,
+  section.band .service ul,
+  .closer .grey { color: #5F6366; }
+  /* dark band, used once so it lands hard */
+  section.dark {
+    background: var(--ink); color: #EFEFED;
+    border-top: 1px solid var(--ink);
+  }
+  section.dark h2 { color: #FFFFFF; }
+  section.dark .grey,
+  section.dark p { color: #B4B7B8; }
+  section.dark .service { background: #24282A; border-color: #333839; }
+  section.dark .service ul { color: #B4B7B8; }
+  section.dark .service h3 { color: #FFFFFF; }
+  section.dark .services { border-color: #333839; }
+  section.dark .service + .service { border-left-color: #333839; }
+  /* The proof block sits on the dark band, so it drops its own tint
+     and lets the band carry the colour. */
+  section.dark .proof {
+    background: transparent; padding: 0; border-radius: 0;
+  }
+  section.dark .proof .stat { color: #FFFFFF; font-size: 76px; }
+  section.dark .proof p { color: #C2C5C6; font-size: 19px; max-width: 60ch; }
+  /* A quiet attribution line under the claim */
+  section.dark .proof-src {
+    font-size: 14px; color: #8B8F90; margin: 22px 0 0;
+    letter-spacing: .04em; text-transform: uppercase; font-weight: 600;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 3.6vw, 44px);
+    line-height: 1.2; letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+  }
+  p { margin: 0 0 18px; }
+  .grey { color: var(--grey); }
+
+  .services { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .service { padding: 38px 36px; background: #fff; }
+  .service + .service { border-left: 1px solid var(--rule); }
+  .service h3 {
+    font-family: var(--display);
+    font-size: 25px; font-weight: 600; margin: 0 0 6px; letter-spacing: -0.015em;
+  }
+  .service .who { font-size: 14px; color: var(--accent); font-weight: 600; margin: 0 0 16px; }
+  .service ul { margin: 0; padding-left: 18px; color: var(--grey); font-size: 17px; }
+  .service li { margin-bottom: 8px; }
+
+  /* --- How it works: the spine --- */
+  /* Subgrid rows: rail, heading, body, card. Every column shares the same
+     four row heights, so all four cards start and end on the same line
+     no matter how the text above them wraps. */
+  .spine {
+    display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 24px;
+    grid-template-rows: auto auto 1fr auto;
+    margin-top: 8px;
+  }
+  .stop {
+    position: relative;
+    display: grid; grid-row: span 4;
+    grid-template-rows: subgrid;
+  }
+  /* Fallback for browsers without subgrid. */
+  @supports not (grid-template-rows: subgrid) {
+     .spine { grid-template-rows: none; align-items: stretch; }
+     .stop { display: flex; flex-direction: column; grid-row: auto; }
+  }
+
+  .stop .rail { position: relative; height: 30px; margin-bottom: 18px; }
+  /* The dot sits at the left edge, directly above where the heading starts.
+     The line runs from the dot rightward across the gap to the next one. */
+  .stop .rail::before {
+    content: ""; position: absolute; left: 38px; right: -24px; top: 50%;
+    height: 1px; background: var(--rule);
+  }
+  .stop:last-child .rail::before { display: none; }
+  .stop .dot {
+    position: absolute; left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--paper); border: 1.5px solid var(--accent);
+    color: var(--accent);
+    display: grid; place-items: center;
+    font-size: 13px; font-weight: 700; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stop.hand .dot { background: var(--accent); color: var(--paper); }
+
+  .stop h3 {
+    font-family: var(--body);
+    font-size: 18px; font-weight: 600; margin: 0 0 8px;
+    letter-spacing: -0.01em; text-wrap: balance;
+  }
+  .stop p { margin: 0 0 20px; color: var(--grey); font-size: 16px; }
+  .stop .ev { margin-top: auto; }
+
+  .ev {
+    background: #fff; border: 1px solid var(--rule); border-radius: 6px;
+    padding: 16px 18px; font-size: 14.5px; line-height: 1.5;
+    height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .ev .k {
+    font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--grey);
+    display: block; margin-bottom: 8px;
+  }
+  .ev .v { color: var(--ink); font-weight: 500; display: block; text-wrap: pretty; }
+  .ev .v b { color: var(--accent); font-weight: 600; }
+  .ev.quote { font-style: italic; color: var(--ink); text-wrap: pretty; }
+
+  .who-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 24px;
+    margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 13px;
+  }
+  .who {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--grey);
+  }
+  .who.us { color: var(--accent); }
+
+  .outcomes {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--rule); border-radius: 10px;
+    background: #fff; margin-top: 34px; overflow: hidden;
+  }
+  .oc { padding: 26px 30px; }
+  .oc + .oc { border-left: 1px solid var(--rule); }
+  .oc .n {
+    font-family: var(--display);
+    font-size: 42px; font-weight: 600; color: var(--accent);
+    line-height: 1; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .oc .c { font-size: 15px; color: var(--grey); margin-top: 8px; }
+
+  .proof { background: var(--accent-soft); border-radius: 10px; padding: 46px 46px; }
+  .proof .stat {
+    font-family: var(--display);
+    font-size: 58px; font-weight: 600; color: var(--accent);
+    line-height: 1; letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 10px;
+  }
+  .proof p { margin: 0; color: #3D4749; }
+
+  /* --- Calendar: a week that fills itself --- */
+  .calendar {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow-x: auto;
+    background: #fff;
+    margin-top: 28px;
+  }
+  .cal-inner { min-width: 1040px; }
+  .cal-days { display: grid; grid-template-columns: 54px repeat(5, 1fr); border-bottom: 1px solid var(--rule); }
+  .cal-days > div { padding: 13px 0; text-align: center; border-left: 1px solid var(--rule); }
+  .cal-days > div:first-child { border-left: none; }
+  .cal-day .dow {
+    font-size: 12px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--grey);
+  }
+  .cal-day .date {
+    font-family: var(--display);
+    font-size: 20px; font-weight: 600; margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cal-day.today .dow,
+  .cal-day.today .date { color: var(--accent); }
+  .cal-grid { display: grid; grid-template-columns: 54px repeat(5, 1fr); }
+  .cal-times { display: grid; grid-auto-rows: 52px; }
+  .cal-time {
+    font-size: 10.5px; color: var(--grey); text-align: right;
+    padding-right: 9px; transform: translateY(-6px);
+    font-variant-numeric: tabular-nums;
+  }
+  .cal-col { display: grid; grid-auto-rows: 52px; border-left: 1px solid var(--rule); padding: 0 3px; }
+  .cal-slot { border-top: 1px solid var(--rule); }
+  .evt {
+    padding: 7px 9px; color: #FBFAF8; font-size: 12.5px;
+    line-height: 1.2; margin: 2px 1px; border-radius: 3px; overflow: hidden;
+  }
+  .evt .title { font-weight: 600; }
+  .evt .time { font-size: 10px; opacity: .88; margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .evt.tall { height: 94px; position: relative; z-index: 2; }
+  .evt.call    { background: var(--accent); }
+  .evt.demo    { background: #4A7C59; }
+  .evt.followup{ background: #A8632C; }
+  .evt.close   { background: #7A4B63; }
+  .evt.review  { background: #3D4247; }
+  .cal-legend {
+    display: flex; flex-wrap: wrap; gap: 20px;
+    margin-top: 20px; font-size: 14.5px; color: var(--grey);
+  }
+  .cal-legend .lg { display: inline-flex; align-items: center; gap: 7px; }
+  .cal-legend .dot { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+  .cal-caption { font-size: 15px; color: var(--grey); margin: 16px 0 0; font-style: italic; }
+
+  .pilot { background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 40px 40px; }
+  .pilot ol { margin: 20px 0 28px; padding-left: 22px; color: var(--grey); font-size: 17.5px; }
+  .pilot li { margin-bottom: 9px; }
+
+  details {
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 600; font-size: 18px;
+    list-style: none; display: flex; justify-content: space-between; gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-weight: 400; font-size: 20px; }
+  details[open] summary::after { content: "\2013"; }
+  details p { margin: 13px 0 2px; color: var(--grey); font-size: 17px; max-width: 70ch; }
+  details p a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(46,95,98,.35); }
+  details p a:hover { border-bottom-color: var(--accent); }
+  details p + p { margin-top: 10px; }
+
+  .closer {
+    text-align: center; padding: 96px 40px 104px;
+    background: var(--accent-soft);
+    border-top: 1px solid var(--rule);
+  }
+  .closer > * { width: min(1320px, 100% - 12vw); margin-left: auto; margin-right: auto; }
+
+  /* ================================================================
+     THE PALETTE, SHARED BY ALL THREE
+     Paper white, muted teal-slate, Fraunces + Public Sans.
+     Variations 2 and 3 do not change these. They add visual
+     interest on top of the same calm foundation.
+  ================================================================ */
+  :root {
+    --paper: #FBFAF8;
+    --ink: #1A1D1F;
+    --accent: #2E5F62;
+    --accent-soft: #E4EDEC;
+    --grey: #6E7275;
+    --rule: #E0DDD7;
+    --band: #F2F0EB;
+    --display: "Fraunces", Georgia, serif;
+    --body: "Public Sans", -apple-system, sans-serif;
+  }
+
+  /* ================================================================
+     VARIATION 1 — CALM
+     Exactly as approved. Nothing added.
+  ================================================================ */
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 860px) {
+    /* Stack the spine: the dot stays at the left edge and the rail
+       runs down to the next step instead of across. */
+     .spine { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 30px; }
+     .stop { display: flex; flex-direction: column; grid-row: auto; }
+     .stop .rail { height: 26px; margin-bottom: 12px; }
+     .stop .rail::before {
+      left: 15px; right: auto; top: 30px; bottom: -42px;
+      width: 1px; height: auto;
+    }
+     .stop:last-child .rail::before { display: none; }
+     .stop .ev { margin-top: 0; height: auto; }
+     .who-row { display: none; }
+     .outcomes { grid-template-columns: 1fr; }
+     .oc + .oc { border-left: none; border-top: 1px solid var(--rule); }
+  }
+
+  @media (max-width: 800px) {
+     .services, .b .services, .c .services { grid-template-columns: 1fr; }
+     .service + .service { border-left: none; border-top: 1px solid var(--rule); }
+  }
+
+  /* ================================================================
+     PHONE LAYOUT
+     Everything below 620px. The page is one column, type steps down,
+     touch targets grow, and anything that scrolled sideways is
+     either stacked or given an explicit swipe affordance.
+  ================================================================ */
+  @media (max-width: 620px) {
+    /* --- shell --- */
+
+    /* --- page frame --- */
+    body { font-size: 16px; line-height: 1.6; }
+     /* Phones get a fixed 18px gutter. The vw based gutter above is
+        for large screens only and would be far too tight here. */
+     .wrap, .wrap-wide { width: auto; padding: 0 18px; max-width: none; }
+     .herostats-inner, .closer > *, .nav-inner, footer { width: auto; }
+     section { padding: 44px 0; }
+
+    /* --- nav: links drop, logo and one action remain --- */
+     nav { padding: 16px 18px; }
+     nav .navlinks { display: none; }
+     .logo { font-size: 19px; }
+
+    /* --- hero --- */
+     .hero { padding: 44px 0 40px; }
+     h1 { font-size: clamp(30px, 8.4vw, 38px); line-height: 1.12; }
+     .lede { font-size: 17px; }
+     .eyebrow { font-size: 11px; margin-bottom: 16px; }
+
+    /* --- buttons become full width, easier to hit --- */
+     .btn {
+      display: block; width: 100%; text-align: center;
+      padding: 16px 20px; font-size: 16px;
+    }
+     .btn-note { font-size: 13.5px; margin-top: 12px; }
+
+    /* --- headings --- */
+     h2 { font-size: clamp(23px, 6.4vw, 28px); }
+     .service h3 { font-size: 20px; }
+
+    /* --- cards --- */
+     .service { padding: 26px 20px; }
+     .pilot { padding: 26px 20px; }
+     .proof { padding: 26px 20px; }
+     .proof .stat { font-size: 36px; }
+     .oc { padding: 18px 20px; }
+     .oc .n { font-size: 30px; }
+
+    /* --- spine: tighter stack --- */
+     .spine { row-gap: 24px; }
+     .stop h3 { font-size: 16px; }
+     .stop p { font-size: 14.5px; margin-bottom: 14px; }
+
+    /* --- calendar: keep the week, add a clear swipe cue --- */
+     .calendar { position: relative; border-radius: 8px; }
+     .cal-inner { min-width: 720px; }
+     .cal-days > div { padding: 10px 0; }
+     .cal-day .dow { font-size: 10px; }
+     .cal-day .date { font-size: 15px; }
+     .cal-times { grid-auto-rows: 46px; }
+     .cal-col { grid-auto-rows: 46px; }
+     .evt { font-size: 10.5px; padding: 5px 6px; }
+     .evt .time { font-size: 9px; }
+     .evt.tall { height: 84px; }
+     .cal-hint {
+      display: block; font-size: 12.5px; color: var(--grey);
+      margin: 10px 0 0; font-style: italic;
+    }
+     .cal-legend { gap: 12px; font-size: 12px; }
+
+    /* --- FAQ: bigger tap targets --- */
+     details { padding: 14px 0; }
+     summary { font-size: 16px; }
+     details p { font-size: 15px; }
+
+    /* --- closer + footer --- */
+     .closer { padding: 48px 0 54px; }
+     footer { padding: 22px 18px; flex-direction: column; gap: 6px; }
+  }
+
+  /* Swipe hint only exists on small screens */
+  .cal-hint { display: none; }
+
+  /* Very small phones */
+  @media (max-width: 380px) {
+     h1 { font-size: 27px; }
+  }
+
+  /* ================================================================
+     MEASURE
+     The page is wide, but running text must not be. Headings and
+     paragraphs cap their own line length so the layout can fill the
+     screen without producing 140 character lines.
+  ================================================================ */
+  h1 { max-width: 17ch; }
+  .lede { max-width: 46ch; }
+  section > .wrap > h2,
+  section > .wrap-wide > h2 { max-width: 22ch; }
+  section > .wrap > p,
+  section > .wrap-wide > p { max-width: 62ch; }
+  .proof p { max-width: 64ch; }
+
+  .closer h2 { max-width: 26ch; margin-left: auto; margin-right: auto; }
+
+  /* Two column sections that now have room to breathe */
+  .pilot { max-width: 860px; }
+  .faq-wrap { max-width: 900px; }
+
+  /* ================================================================
+     STANDALONE PAGE
+     Rules that only matter once this is a real page rather than
+     one panel in a comparison view.
+  ================================================================ */
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body { background: var(--paper); color: var(--ink); }
+
+  /* Skip link for keyboard and screen reader users */
+  .skip {
+    position: absolute; left: -9999px;
+    background: var(--accent); color: var(--paper);
+    padding: 12px 18px; border-radius: 0 0 6px 0;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    z-index: 200;
+  }
+  .skip:focus { left: 0; top: 0; }
+
+  /* Sticky header so the call to action is always reachable */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,250,248,.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    max-width: none; padding-left: 0; padding-right: 0;
+  }
+  .nav-inner {
+    width: min(1440px, 100% - 8vw); margin: 0 auto; padding: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px;
+  }
+  nav .navcta {
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    color: var(--accent); border: 1px solid var(--accent);
+    padding: 10px 18px; border-radius: 6px; white-space: nowrap;
+  }
+  nav .navcta:hover { background: var(--accent); color: var(--paper); }
+
+  /* Section anchors clear the sticky header */
+  section[id] { scroll-margin-top: 74px; }
+
+  /* Footer worthy of a real site */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 44px 0 52px; width: min(1440px, 100% - 8vw); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 24px; font-size: 14px; color: var(--grey);
+  }
+  footer .foot-brand {
+    font-family: var(--display); font-size: 20px;
+    font-weight: 600; color: var(--ink); letter-spacing: -0.02em;
+  }
+  footer .foot-brand b { color: var(--accent); }
+  footer .foot-line { margin: 6px 0 0; max-width: 34ch; }
+  footer .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer .foot-links a { text-decoration: none; }
+  footer .foot-links a:hover { color: var(--accent); }
+
+  @media (max-width: 620px) {
+    .nav-inner { padding: 0 18px; }
+    nav .navcta { font-size: 13px; padding: 8px 13px; }
+    section[id] { scroll-margin-top: 62px; }
+    footer { padding: 32px 18px 40px; flex-direction: column; gap: 18px; }
+  }
+
+  /* ================================================================
+     CONTACT
+     The page had four calls to action and no way to reach anyone.
+     This is the destination all of them now point at: one address,
+     stated plainly, with what to put in the mail so the first
+     reply can already be useful.
+  ================================================================ */
+  .contact-card {
+    background: #fff; border: 1px solid var(--rule); border-radius: 10px;
+    padding: 44px 44px; margin-top: 30px; max-width: 860px;
+  }
+  .contact-mail {
+    font-family: var(--display);
+    font-size: clamp(26px, 3.4vw, 38px); font-weight: 600;
+    letter-spacing: -0.02em; color: var(--accent);
+    text-decoration: none; display: inline-block;
+    line-height: 1.15; word-break: break-word;
+    border-bottom: 2px solid transparent;
+    transition: border-color .18s ease;
+  }
+  .contact-mail:hover { border-bottom-color: var(--accent); }
+  .contact-card .lead-in { font-size: 15px; color: var(--grey); margin: 0 0 10px; }
+  .contact-card ul {
+    margin: 26px 0 28px; padding-left: 18px;
+    color: var(--grey); font-size: 16.5px;
+  }
+  .contact-card li { margin-bottom: 8px; }
+  .contact-reply {
+    border-top: 1px solid var(--rule); padding-top: 18px;
+    font-size: 15px; color: var(--grey); margin: 0;
+  }
+  @media (max-width: 620px) {
+    .contact-card { padding: 26px 20px; margin-top: 22px; }
+    .contact-card ul { font-size: 15px; margin: 20px 0 22px; }
+    .contact-mail { font-size: 22px; }
+  }
+
+  /* ================================================================
+     MOBILE NAV
+     Below 620px the inline links are hidden, which previously left
+     phone visitors with no way to jump anywhere on a long page.
+     This is a details drawer: no JS, keyboard operable, and it
+     collapses on its own when a link is followed because the anchor
+     navigation re-renders the header.
+  ================================================================ */
+  .mobnav { display: none; }
+  .mobnav summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 9px;
+    font-size: 14px; font-weight: 600; color: var(--accent);
+    padding: 10px 18px 12px;
+  }
+  .mobnav summary::-webkit-details-marker { display: none; }
+  .mobnav summary::after { content: none; }
+  .mobnav .bars {
+    display: inline-flex; flex-direction: column; justify-content: center;
+    gap: 3.5px; width: 17px;
+  }
+  .mobnav .bars i {
+    display: block; height: 1.5px; width: 100%;
+    background: var(--accent); border-radius: 1px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .mobnav[open] .bars i:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .mobnav[open] .bars i:nth-child(2) { opacity: 0; }
+  .mobnav[open] .bars i:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+  .mobnav-panel {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--rule);
+    padding: 6px 18px 14px;
+  }
+  .mobnav-panel a {
+    text-decoration: none; color: var(--ink);
+    font-size: 16px; font-weight: 500;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .mobnav-panel a:last-child {
+    border-bottom: none; color: var(--accent); font-weight: 600;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobnav .bars i { transition: none; }
+  }
+  @media (max-width: 620px) {
+    .mobnav { display: block; }
+  }
+
+  /* ================================================================
+     THE CONTRAST
+     Two columns setting the usual AI outbound offer against what we
+     actually do. This is the differentiation Bob asked for, stated
+     once and plainly rather than sprinkled through the copy.
+  ================================================================ */
+  .vs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+    margin-top: 34px;
+  }
+  .vs-col {
+    border: 1px solid var(--rule); border-radius: 10px;
+    padding: 30px 30px 26px; background: #fff;
+  }
+  /* On the tinted band the "them" card needs its own slightly
+     recessed ground, not --band, or it disappears into the section. */
+  .vs-col.them { background: #EAE7E0; border-color: #D6D2CA; }
+  .vs-col.us { border-color: var(--accent); }
+  .vs-col h3 {
+    font-family: var(--display); font-size: 21px; font-weight: 600;
+    margin: 0 0 4px; letter-spacing: -0.015em;
+  }
+  .vs-col .tag {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; margin: 0 0 18px;
+  }
+  .vs-col.them .tag { color: var(--grey); }
+  .vs-col.us .tag { color: var(--accent); }
+  .vs-col ul { margin: 0; padding: 0; list-style: none; }
+  .vs-col li {
+    font-size: 16px; color: var(--grey);
+    padding: 9px 0 9px 26px; position: relative;
+    border-top: 1px solid var(--rule);
+  }
+  .vs-col li:first-child { border-top: none; }
+  .vs-col li::before {
+    position: absolute; left: 0; top: 9px;
+    font-weight: 700; font-size: 15px;
+  }
+  .vs-col.them li::before { content: "\00d7"; color: #A8632C; }
+  .vs-col.us li::before { content: "\2713"; color: var(--accent); }
+  .vs-col.us li { color: var(--ink); }
+  @media (max-width: 800px) {
+    .vs { grid-template-columns: 1fr; gap: 16px; }
+  }
+  @media (max-width: 620px) {
+    .vs { margin-top: 24px; }
+    .vs-col { padding: 22px 20px 20px; }
+    .vs-col h3 { font-size: 19px; }
+    .vs-col li { font-size: 15px; }
+  }
+</style>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<nav>
+    <div class="nav-inner">
+      <div class="logo">mo<b>nasa</b></div>
+      <div class="navlinks">
+        <a href="#different">Why us</a>
+        <a href="#services">What we do</a>
+        <a href="#how">How it works</a>
+        <a href="#stories">Results</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="navcta" href="#pilot">Try it for a month</a>
+    </div>
+    <details class="mobnav">
+      <summary aria-label="Menu">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="mobnav-label">Menu</span>
+      </summary>
+      <div class="mobnav-panel">
+        <a href="#different">Why us</a>
+        <a href="#services">What we do</a>
+        <a href="#how">How it works</a>
+        <a href="#stories">Results</a>
+        <a href="#pilot">First campaign</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </details>
+  </nav>
+
+  <main id="main">
+  <div class="wrap hero">
+    <p class="eyebrow">AI outbound plus real people on the phone</p>
+    <h1>We find the companies ready to buy. Then we actually call them.</h1>
+    <p class="lede">Most AI outbound agencies stop at the email. Monasa spots which companies are ready right now, writes to them, and then <strong>puts our own callers on the phone</strong>. Your team only talks to people who want to talk.</p>
+    <a class="btn" href="#pilot">Try it for a month</a>
+    <span class="btn-note">No long contract. We contact 200 companies first and show you what came back.</span>
+  </div>
+
+
+  <div class="herostats">
+    <div class="herostats-inner stagger reveal">
+      <div class="hs">
+        <div class="n">10.13%</div>
+        <div class="c">Reply rate on our last campaign, against an under 2 percent norm</div>
+      </div>
+      <div class="hs">
+        <div class="n">33</div>
+        <div class="c">Sales meetings booked from a single campaign</div>
+      </div>
+      <div class="hs">
+        <div class="n">200</div>
+        <div class="c">Companies we contact before you commit to anything</div>
+      </div>
+      <div class="hs">
+        <div class="n">0</div>
+        <div class="c">People you need to hire, train or manage</div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap reveal">
+      <h2>Most sales teams spend their day looking, not selling.</h2>
+      <p class="grey">Your reps open lists. They guess who to contact. They send emails nobody opens. They call people who were never going to buy. By the time they get to a real conversation, half the week is gone.</p>
+      <p class="grey">The problem is not effort. It is that nobody tells them who is worth contacting today, and nobody does the boring first contact for them.</p>
+    </div>
+  </section>
+
+  <section class="band" id="different">
+    <div class="wrap reveal">
+      <h2>Where the AI outbound crowd stops</h2>
+      <p class="grey">There are a lot of agencies selling AI outbound right now. Most of them sell you the same thing, which is more email. The gap is what happens after someone reads it.</p>
+
+      <div class="vs stagger">
+        <div class="vs-col them">
+          <h3>A typical AI outbound agency</h3>
+          <p class="tag">What you usually get</p>
+          <ul>
+            <li>A list bought from a database, unchecked</li>
+            <li>AI writes the email and sends volume</li>
+            <li>Replies get forwarded to you, and that is the handover</li>
+            <li>No one ever picks up the phone</li>
+            <li>Nobody follows up when a good lead goes quiet</li>
+          </ul>
+        </div>
+        <div class="vs-col us">
+          <h3>Monasa</h3>
+          <p class="tag">What we do instead</p>
+          <ul>
+            <li>Every company checked by hand before it goes in</li>
+            <li>AI writes the email, built around one signal we verified</li>
+            <li>Our own callers work the same list by phone</li>
+            <li>We handle the first objections, so you get a real conversation</li>
+            <li>Meetings land in your calendar with the notes and the recording</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap reveal">
+      <h2>Most agencies do one half. We do both.</h2>
+      <p class="grey" style="margin-bottom:28px">AI is very good at finding who to contact and writing the first email. It is not good at handling a real objection on the phone. So we use AI for the first half and our own people for the second, off the same list. You can take one half or both.</p>
+      <div class="services stagger">
+        <div class="service">
+          <h3>The AI half</h3>
+          <p class="who">Signals, targeting and email at scale</p>
+          <ul>
+            <li>We watch the market for buying signals, like a new hire, new funding, or a new tool</li>
+            <li>We check every company by hand before it goes in</li>
+            <li>AI writes each email around that one signal, so it does not read like a template</li>
+            <li>Replies land in your inbox</li>
+          </ul>
+        </div>
+        <div class="service">
+          <h3>The human half</h3>
+          <p class="who">Our own callers on the phone</p>
+          <ul>
+            <li>Our callers work from the same signal list, so every call has a reason</li>
+            <li>We call, handle the first objections, and qualify</li>
+            <li>Meetings go straight into your reps' calendars</li>
+            <li>You get the call notes and the recordings</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap-wide reveal">
+      <h2>How it works</h2>
+      <p class="grey" style="max-width:60ch;margin-bottom:34px">We start with one call to agree who your best customer is. After that the cycle below runs every week. We do the first three steps. You do the one that makes money.</p>
+
+      <div class="spine">
+        <div class="stop">
+          <div class="rail"><div class="dot">1</div></div>
+          <h3>A signal appears</h3>
+          <p>Something we can check from the outside that makes you relevant right now.</p>
+          <div class="ev">
+            <span class="k">Signal found</span>
+            <span class="v"><b>Second location opened</b><br>Still running one team</span>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="rail"><div class="dot">2</div></div>
+          <h3>We find the right person</h3>
+          <p>Not the company mailbox. The person who owns the problem.</p>
+          <div class="ev">
+            <span class="k">Contact</span>
+            <span class="v"><b>Operations Director</b><br>Direct line found</span>
+          </div>
+        </div>
+
+        <div class="stop">
+          <div class="rail"><div class="dot">3</div></div>
+          <h3>We reach out</h3>
+          <p>An email about their signal, then one of our people calls.</p>
+          <div class="ev quote">
+            "Two sites now, one team. That usually breaks somewhere around month three."
+          </div>
+        </div>
+
+        <div class="stop hand">
+          <div class="rail"><div class="dot">4</div></div>
+          <h3>You take the meeting</h3>
+          <p>It lands in your calendar with the full story attached.</p>
+          <div class="ev">
+            <span class="k">Booked</span>
+            <span class="v"><b>Thu 09:00</b><br>First call, 30 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="who-row">
+        <div class="who us">Monasa</div>
+        <div class="who us">Monasa</div>
+        <div class="who us">Monasa</div>
+        <div class="who">Your team</div>
+      </div>
+
+      <div class="outcomes stagger">
+        <div class="oc">
+          <div class="n">200</div>
+          <div class="c">Companies contacted in your first campaign</div>
+        </div>
+        <div class="oc">
+          <div class="n">10.13%</div>
+          <div class="c">Reply rate we hit on our last campaign</div>
+        </div>
+        <div class="oc">
+          <div class="n">0</div>
+          <div class="c">People you need to hire or train</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark">
+    <div class="wrap reveal">
+      <h2>It already works</h2>
+      <div class="proof">
+        <p class="stat">10.13%</p>
+        <p>That is the reply rate on our best campaign, against an industry norm under 2 percent. Not because the writing was clever, but because every single email pointed at one fact we had checked about that company first.</p>
+        <p class="proof-src">Three campaigns below &middot; real numbers &middot; names on request</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories">
+    <div class="wrap-wide reveal">
+      <h2>Three campaigns, three markets</h2>
+      <p class="grey">An SEO agency, a market research firm, and an IT integrator. Different products, same method.</p>
+
+      <div class="stories stagger">
+        <div class="story">
+          <p class="who">SEO agency, Netherlands</p>
+          <p class="headline">33</p>
+          <p class="headline-c">qualified opportunities</p>
+          <p class="body">They sold to webshops but had no repeatable way to start conversations. We found one thing we could check on every prospect site, a missing sitemap in the footer, and built every email around that single finding.</p>
+          <div class="kpis">
+            <div class="kpi"><span>Emails sent</span><span>3,100</span></div>
+            <div class="kpi"><span>Reply rate</span><span>10.13%</span></div>
+            <div class="kpi"><span>Against the norm</span><span>under 2%</span></div>
+          </div>
+        </div>
+
+        <div class="story">
+          <p class="who">Market research services</p>
+          <p class="headline">8</p>
+          <p class="headline-c">qualified opportunities in month one</p>
+          <p class="body">They sold research fieldwork to pharma and research firms, a long and relationship driven sale. We split the market into three groups and wrote to each one about how they currently resource the work, not about us.</p>
+          <div class="kpis">
+            <div class="kpi"><span>Emails sent</span><span>3,000</span></div>
+            <div class="kpi"><span>Time to first results</span><span>1 month</span></div>
+            <div class="kpi"><span>Their old reply rate</span><span>1 to 2%</span></div>
+          </div>
+        </div>
+
+        <div class="story">
+          <p class="who">IT integration, Belgium</p>
+          <p class="headline">15</p>
+          <p class="headline-c">accounts proven, then scaled to 200</p>
+          <p class="body">They knew their market but not which accounts were worth a call this quarter. We took fifteen target accounts and found the buying signals hiding in each one, from system migrations to new leadership, then handed their team a reason to call every single one.</p>
+          <div class="kpis">
+            <div class="kpi"><span>Signals per account</span><span>9 layers</span></div>
+            <div class="kpi"><span>Delivered in</span><span>10 working days</span></div>
+            <div class="kpi"><span>Scaled to</span><span>200 accounts</span></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="midcta">
+        <div>
+          <h3>Want numbers like these from your own market?</h3>
+          <p>We will contact 200 companies for you first and show you exactly what came back.</p>
+        </div>
+        <a class="btn" href="#pilot">Try it for a month</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="band" id="week">
+    <div class="wrap-wide reveal">
+      <h2>What your week starts to look like</h2>
+      <p class="grey" style="max-width:58ch">While the system runs in the background, your calendar fills up with intake calls, demos and follow ups. You just show up.</p>
+
+      <div class="calendar">
+        <div class="cal-inner">
+          <div class="cal-days">
+            <div></div>
+            <div class="cal-day"><div class="dow">Mon</div><div class="date">6</div></div>
+            <div class="cal-day"><div class="dow">Tue</div><div class="date">7</div></div>
+            <div class="cal-day today"><div class="dow">Wed</div><div class="date">8</div></div>
+            <div class="cal-day"><div class="dow">Thu</div><div class="date">9</div></div>
+            <div class="cal-day"><div class="dow">Fri</div><div class="date">10</div></div>
+          </div>
+          <div class="cal-grid">
+            <div class="cal-times">
+              <div class="cal-time">08:00</div><div class="cal-time">09:00</div><div class="cal-time">10:00</div>
+              <div class="cal-time">11:00</div><div class="cal-time">12:00</div><div class="cal-time">13:00</div>
+              <div class="cal-time">14:00</div><div class="cal-time">15:00</div>
+            </div>
+            <!-- Monday -->
+            <div class="cal-col">
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call"><div class="title">First call &middot; Retail group</div><div class="time">09:00</div></div></div>
+              <div class="cal-slot"><div class="evt demo"><div class="title">Demo &middot; Equipment maker</div><div class="time">10:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt followup"><div class="title">Follow up &middot; Retail chain</div><div class="time">13:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt close"><div class="title">Kickoff &middot; Online retailer</div><div class="time">15:00</div></div></div>
+            </div>
+            <!-- Tuesday -->
+            <div class="cal-col">
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call tall"><div class="title">First call &middot; Manufacturer</div><div class="time">10:00 to 11:30</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt demo"><div class="title">Demo &middot; Payments platform</div><div class="time">13:30</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt followup"><div class="title">Follow up &middot; Wholesaler</div><div class="time">15:00</div></div></div>
+            </div>
+            <!-- Wednesday -->
+            <div class="cal-col">
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call"><div class="title">First call &middot; Hardware vendor</div><div class="time">09:15</div></div></div>
+              <div class="cal-slot"><div class="evt followup"><div class="title">Follow up &middot; Health tech</div><div class="time">10:30</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt review"><div class="title">Contract review &middot; 3D printing firm</div><div class="time">13:00</div></div></div>
+              <div class="cal-slot"><div class="evt demo"><div class="title">Demo &middot; Fintech scale up</div><div class="time">14:45</div></div></div>
+              <div class="cal-slot"></div>
+            </div>
+            <!-- Thursday -->
+            <div class="cal-col">
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call"><div class="title">First call &middot; Materials group</div><div class="time">09:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call tall"><div class="title">First call &middot; Travel platform</div><div class="time">11:30 to 13:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt followup"><div class="title">Follow up &middot; IT services</div><div class="time">14:00</div></div></div>
+              <div class="cal-slot"></div>
+            </div>
+            <!-- Friday -->
+            <div class="cal-col">
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt call"><div class="title">First call &middot; Food and drink</div><div class="time">08:30</div></div></div>
+              <div class="cal-slot"><div class="evt demo"><div class="title">Demo &middot; Food producer</div><div class="time">10:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"><div class="evt close"><div class="title">Kickoff &middot; Hosting provider</div><div class="time">13:00</div></div></div>
+              <div class="cal-slot"></div>
+              <div class="cal-slot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="cal-hint">Swipe the calendar sideways to see the full week.</p>
+
+      <div class="cal-legend">
+        <span class="lg"><span class="dot" style="background:#2E5F62"></span>First call</span>
+        <span class="lg"><span class="dot" style="background:#4A7C59"></span>Demo</span>
+        <span class="lg"><span class="dot" style="background:#A8632C"></span>Follow up</span>
+        <span class="lg"><span class="dot" style="background:#7A4B63"></span>Kickoff</span>
+        <span class="lg"><span class="dot" style="background:#3D4247"></span>Contract review</span>
+      </div>
+      <p class="cal-caption">Example week. Every meeting here started as a signal we spotted, an email we sent, or a call we made.</p>
+    </div>
+  </section>
+
+  <section id="pilot">
+    <div class="wrap reveal">
+      <h2>Give us a month and 200 prospects</h2>
+      <div class="pilot">
+        <p class="grey" style="margin:0">You should not have to sign a long contract to find out if this works. So we run a real campaign first, on our side, and show you exactly what came out of it.</p>
+        <ol>
+          <li>You tell us who your ideal customer is</li>
+          <li>We build a list of 200 companies that show a buying signal right now</li>
+          <li>We contact all 200 of them, by email and by phone</li>
+          <li>We show you the full results, every reply and every meeting booked</li>
+          <li>If the numbers are good, we scale it together as partners</li>
+        </ol>
+        <a class="btn" href="#contact">Try it for a month</a>
+        <span class="btn-note">You see real numbers from your own market before you commit to anything.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap reveal">
+      <h2>Questions people ask</h2>
+      <p class="grey" style="max-width:56ch">The honest answers, including the ones where we say no.</p>
+
+      <details>
+        <summary>Who actually makes the calls?</summary>
+        <p>Our own callers, and they only work on your accounts. Not a call centre where someone reads a script for eleven different clients in one afternoon, and not an AI voice.</p>
+        <p>We train them on your product the same way you would train a new hire. You approve the call script before anyone picks up the phone, and you get the recordings, so you can hear exactly how your company is being represented.</p>
+      </details>
+      <details>
+        <summary>What kind of system do you set up for us?</summary>
+        <p>Three parts, and we build and run all of them.</p>
+        <p>First, a live list of the companies worth contacting, built from signals like a new hire, a tool switch, fresh funding, or a new office. It updates as the market moves instead of going stale in a spreadsheet.</p>
+        <p>Second, the outreach itself. Sending inboxes that are set up and warmed properly so your email actually arrives, messaging built around each signal, and the call scripts that match.</p>
+        <p>Third, the reporting and the handover. You see what was sent, what came back, and what is booked, and the meetings arrive in your calendar and your CRM. There is nothing for you to install and nothing new to log into.</p>
+      </details>
+      <details>
+        <summary>Can we take only one half, either the calling or the AI outbound?</summary>
+        <p>Yes. Some clients only want the calling, because they already know who to target and just need the phone work done. Others only want the system, because they have people who can call but no idea who to call this week.</p>
+        <p>Both together costs less per meeting, since the same list feeds the emails and the calls. But neither one depends on the other, and you can start with one and add the second later.</p>
+      </details>
+      <details>
+        <summary>What if you contact a customer we already have, or a prospect already in our pipeline?</summary>
+        <p>We work with exclusion lists. Before anything goes out, you give us the accounts to stay away from, which is current customers, open deals, and anyone your reps are already talking to. Every list we build gets checked against it.</p>
+        <p>If you use HubSpot or Salesforce we can check against your CRM directly, so the exclusions stay current as your pipeline changes and you do not have to maintain a spreadsheet for us.</p>
+      </details>
+      <details>
+        <summary>Is cold calling and cold emailing still allowed in the EU?</summary>
+        <p>Yes, for business to business contact, and there are rules we follow.</p>
+        <p>We only contact people in their professional role at a business address, we say who we are and why we are calling, we honour any request to be removed straight away, and we keep a record of where each contact came from. In Belgium we also check the do not call list before we phone anyone.</p>
+      </details>
+      <details>
+        <summary>What does it cost?</summary>
+        <p>We work on a fixed monthly retainer, agreed before we start. Not a percentage of your deals and not a surprise invoice.</p>
+        <p>What it comes to depends on the scope, so how many accounts you want covered, which markets, and whether you want the calling, the system, or both. Email us at <a href="mailto:info@monasa.io?subject=Pricing">info@monasa.io</a> with a rough idea of what you have in mind and we will come back with a concrete number.</p>
+        <p>The first 200 prospect campaign is quoted on its own, so you can stop after it without owing anything further.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap reveal">
+      <h2>Talk to us</h2>
+      <p class="grey">One address, and it reaches the people who would run your campaign. No form, no queue, no chatbot.</p>
+
+      <div class="contact-card">
+        <p class="lead-in">Email us at</p>
+        <a class="contact-mail" href="mailto:info@monasa.io?subject=Trying%20it%20for%20a%20month">info@monasa.io</a>
+
+        <ul>
+          <li>Tell us what you sell and who your best customer looks like</li>
+          <li>Tell us which market or country you want to go after</li>
+          <li>Say whether you want the calling, the system, or both</li>
+        </ul>
+
+        <p class="contact-reply">That is enough for us to come back with a concrete plan for your first 200 prospects, including the price. We reply within one working day.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closer">
+    <h2>Show us your ideal customer. We will contact 200 of them and show you what happened.</h2>
+    <p class="grey" style="max-width:48ch;margin:0 auto 26px">Real numbers from your own market. Then we decide together how far to scale it.</p>
+    <a class="btn" href="#contact">Try it for a month</a>
+  </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <div class="foot-brand">mo<b>nasa</b></div>
+      <p class="foot-line">We find the companies ready to buy and contact them for you.</p>
+    </div>
+    <div class="foot-links">
+      <a href="#different">Why us</a>
+      <a href="#services">What we do</a>
+      <a href="#how">How it works</a>
+      <a href="#stories">Results</a>
+      <a href="#contact">Contact</a>
+      <a href="#pilot">First campaign</a>
+      <a href="mailto:info@monasa.io">info@monasa.io</a>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Reading progress
+  var bar = document.querySelector('.progress i');
+  if (bar) {
+    var tick = function () {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    addEventListener('scroll', tick, { passive: true });
+    addEventListener('resize', tick);
+    tick();
+  }
+
+  // Reveal on scroll. Without IntersectionObserver everything just shows.
+  var items = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  items.forEach(function (el) { io.observe(el); });
+}());
+</script>
